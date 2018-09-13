@@ -20,7 +20,7 @@ namespace JobExecuterConsole
                 results.ForEach((res) =>
                 {
                     Console.WriteLine(res.IsSucceeded
-                        ? $"- Job: {res.JobName}, Status: Completed, Execution Time (mls): {(int) res.ExecutionTime.TotalMilliseconds}"
+                        ? $"- Job: {res.JobName}, Status: Completed, Execution Time (mls) Actual/Estimated: {(int) res.ExecutionTime.TotalMilliseconds}/{(int)res.EstimatedExecutionTime.TotalMilliseconds}"
                         : $"- Job: {res.JobName}, Status: Failed, Error: {res.ErrorMassage}");
                 });
             }

@@ -33,7 +33,7 @@ namespace JobExecuterConsoleUnitTests
         }
 
         [TestMethod]
-        public void Execute_TimeRangeTest()
+        public void Execute_ActualTimeRangeTest()
         {
             var executer = new JobExecuter(Mock.Create<ILogger>());
             var res = executer.Execute(new List<char>() { 'E' }, TimeSpan.FromMilliseconds(500));
@@ -43,6 +43,19 @@ namespace JobExecuterConsoleUnitTests
             Assert.IsNotNull(job);
             Assert.IsTrue(job.ExecutionTime.TotalMilliseconds > 0);
             Assert.IsTrue(job.ExecutionTime.TotalMilliseconds < 500);
+        }
+
+        [TestMethod]
+        public void Execute_EstimatedTimeRangeTest()
+        {
+            var executer = new JobExecuter(Mock.Create<ILogger>());
+            var res = executer.Execute(new List<char>() { 'E' }, TimeSpan.FromMilliseconds(500));
+
+            Assert.AreEqual<int>(1, res.Count);
+            var job = res.Find(x => x.JobName == 'E');
+            Assert.IsNotNull(job);
+            Assert.IsTrue(job.EstimatedExecutionTime.TotalMilliseconds > 0);
+            Assert.IsTrue(job.EstimatedExecutionTime.TotalMilliseconds < 500);
         }
 
         private static void TestExecutionResult(JobExecutionResult execResult, char jobName)

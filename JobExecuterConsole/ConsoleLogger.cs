@@ -10,19 +10,19 @@ namespace JobExecuterConsole
     {
         public void Info(string message)
         {
-            Console.WriteLine("Info: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Info: " + message);
         }
         public void Error(string message)
         {
-            Console.WriteLine("Error: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Error: " + message);
         }
         public void Debug(string message)
         {
-            Console.WriteLine("Debug: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Debug: " + message);
         }
         public void Warn(string message)
         {
-            Console.WriteLine("Warn: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Warn: " + message);
         }
     }
 }
