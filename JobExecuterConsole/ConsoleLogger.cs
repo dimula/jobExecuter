@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace JobExecuterConsole
@@ -10,19 +11,19 @@ namespace JobExecuterConsole
     {
         public void Info(string message)
         {
-            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Info: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} Thread: {Thread.CurrentThread.ManagedThreadId} Info: " + message);
         }
         public void Error(string message)
         {
-            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Error: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} Thread: {Thread.CurrentThread.ManagedThreadId} Error: " + message);
         }
         public void Debug(string message)
         {
-            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Debug: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} Thread: {Thread.CurrentThread.ManagedThreadId} Debug: " + message);
         }
         public void Warn(string message)
         {
-            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} - Warn: " + message);
+            Console.WriteLine($"{DateTime.Now:MM/dd/yyyy HH:mm:ss.fff} Thread: {Thread.CurrentThread.ManagedThreadId} Warn: " + message);
         }
     }
 }

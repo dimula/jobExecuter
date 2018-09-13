@@ -25,13 +25,14 @@ namespace JobExecuterConsole
                 sw.Start();
 
                 var name = (char)x;
-                logger.Debug($"Job {name} started");
+                logger.Debug($"Job {name} started.");
                 if (name == char.ToLower(name))
                     throw new JobExecutionException($"jobName ({name}) is in lower case.");
 
                 var delay = random.Next((int)timeRange.TotalMilliseconds);
                 Thread.Sleep(delay);
 
+                logger.Debug($"Job {name} completed.");
                 return new JobExecutionResult()
                 {
                     JobName = name,
