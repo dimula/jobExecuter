@@ -42,7 +42,7 @@ namespace JobExecuterConsole
             }
 
             logger.Info($"Execution started (JobNames: {String.Join(",", jobNames)}, TimeRange: {timeRange.TotalMilliseconds}).");
-            var tasks = jobNames.ToDictionary(x => x, x => Task.Factory.StartNew(JobFunction, x));
+            var tasks = jobNames.ToDictionary(x => x + '-'+ Guid.NewGuid().ToString(), x => Task.Factory.StartNew(JobFunction, x));
 
             logger.Debug("Waiting...");
             try
@@ -64,7 +64,7 @@ namespace JobExecuterConsole
                 ? tasks[key].Result
                 : new JobExecutionResult()
                 {
-                    JobName = key,
+                    JobName = key[0],
                     IsSucceeded = tasks[key].Status == TaskStatus.RanToCompletion,
                     ErrorMassage = tasks[key].Exception?.InnerException?.Message,
                     ExecutionTime = tasks[key].Status == TaskStatus.RanToCompletion
