@@ -42,7 +42,7 @@ namespace JobExecuterConsole
             }
 
             logger.Info($"Execution started (JobNames: {String.Join(",", jobNames)}, TimeRange: {timeRange.TotalMilliseconds}).");
-            var tasks = jobNames.ToDictionary(x => x + '-'+ Guid.NewGuid().ToString(), x => Task.Factory.StartNew(JobFunction, x));
+            var tasks = jobNames.ToDictionary(x => x.ToString() + ':' + Guid.NewGuid().ToString(), x => Task.Factory.StartNew(JobFunction, x));
 
             logger.Debug("Waiting...");
             try

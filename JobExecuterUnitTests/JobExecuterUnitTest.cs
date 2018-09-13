@@ -33,6 +33,15 @@ namespace JobExecuterConsoleUnitTests
         }
 
         [TestMethod]
+        public void Execute_DuplicatedNamesTest()
+        {
+            var executer = new JobExecuter(Mock.Create<ILogger>());
+            var res = executer.Execute(new List<char>() { 'a','a','a','B','B','B' }, TimeSpan.FromMilliseconds(500));
+
+            Assert.AreEqual<int>(6, res.Count);
+        }
+
+        [TestMethod]
         public void Execute_ActualTimeRangeTest()
         {
             var executer = new JobExecuter(Mock.Create<ILogger>());
